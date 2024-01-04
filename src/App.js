@@ -1,25 +1,114 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+function AgeCalculator() {
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [age, setAge] = useState({});
+
+  useEffect(() => {
+    const calculateAge = () => {
+      const birthDate = moment(dateOfBirth, 'YYYY-MM-DD');
+      const now = moment();
+      const duration = moment.duration(now.diff(birthDate));
+
+      setAge({
+        years: isNaN(duration.years()) ? '' : duration.years().toString(),
+        months: isNaN(duration.months()) ? '' : duration.months().toString(),
+        weeks: isNaN(duration.weeks()) ? '' : duration.weeks().toString(),
+        days: isNaN(duration.days()) ? '' : duration.days().toString(),
+        hours: isNaN(now.diff(birthDate, 'hours')) ? '' : now.diff(birthDate, 'hours').toString(),
+        minutes: isNaN(now.diff(birthDate, 'minutes')) ? '' : now.diff(birthDate, 'minutes').toString(),
+        seconds: isNaN(now.diff(birthDate, 'seconds')) ? '' : now.diff(birthDate, 'seconds').toString(),
+        milliseconds: isNaN(now.diff(birthDate, 'milliseconds')) ? '' : now.diff(birthDate, 'milliseconds').toString(),
+      });
+    };
+
+    calculateAge();
+    const intervalId = setInterval(calculateAge, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [dateOfBirth]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h2 className="text-center mb-4">Age Calculator</h2>
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <label>Enter Your Date Of Birth</label>
+          <input
+            type="date"
+            className="form-control mb-3"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+            max={moment().format('YYYY-MM-DD')}
+          />
+          <div className="row row-cols-1 row-cols-md-2 g-4">
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Years: {age.years}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Months: {age.months}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Weeks: {age.weeks}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Days: {age.days}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Hours: {age.hours}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Minutes: {age.minutes}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Seconds: {age.seconds}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card">
+                <div className="card-body">
+                  <p className="card-text">Milliseconds: {age.milliseconds}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default AgeCalculator;
+
+
+
