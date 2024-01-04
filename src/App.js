@@ -11,13 +11,13 @@ function AgeCalculator() {
     const calculateAge = () => {
       const birthDate = moment(dateOfBirth, 'YYYY-MM-DD');
       const now = moment();
-      const duration = moment.duration(now.diff(birthDate));
+      // const duration = moment.duration(now.diff(birthDate));
 
       setAge({
-        years: isNaN(duration.years()) ? '' : duration.years().toString(),
-        months: isNaN(duration.months()) ? '' : duration.months().toString(),
-        weeks: isNaN(duration.weeks()) ? '' : duration.weeks().toString(),
-        days: isNaN(duration.days()) ? '' : duration.days().toString(),
+        years: isNaN(now.diff(birthDate, 'years')) ? '' : now.diff(birthDate, 'years').toString(),
+        months: isNaN(now.diff(birthDate, 'months')) ? '' : now.diff(birthDate, 'months').toString(),
+        weeks: isNaN(now.diff(birthDate, 'weeks')) ? '' : now.diff(birthDate, 'weeks').toString(),
+        days: isNaN(now.diff(birthDate, 'days')) ? '' : now.diff(birthDate, 'days').toString(),
         hours: isNaN(now.diff(birthDate, 'hours')) ? '' : now.diff(birthDate, 'hours').toString(),
         minutes: isNaN(now.diff(birthDate, 'minutes')) ? '' : now.diff(birthDate, 'minutes').toString(),
         seconds: isNaN(now.diff(birthDate, 'seconds')) ? '' : now.diff(birthDate, 'seconds').toString(),
@@ -32,72 +32,74 @@ function AgeCalculator() {
   }, [dateOfBirth]);
 
   return (
-    <div className="container">
-      <h2 className="text-center mb-4">Age Calculator</h2>
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <label>Enter Your Date Of Birth</label>
-          <input
-            type="date"
-            className="form-control mb-3"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            max={moment().format('YYYY-MM-DD')}
-          />
-          <div className="row row-cols-1 row-cols-md-2 g-4">
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Years: {age.years}</p>
+    <div className="container-wrapper">
+      <div className="container">
+        <h2 className="text-center mb-4">Age Calculator</h2>
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <p>Enter Your Life Subscription Activation Date:</p>
+            <input
+              type="date"
+              className="form-control mb-3 calendar"
+              value={dateOfBirth}
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              max={moment().format('YYYY-MM-DD')}
+            />
+            <div className="row row-cols-1 row-cols-md-2 g-4">
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Years: {age.years}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Months: {age.months}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Months: {age.months}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Weeks: {age.weeks}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Weeks: {age.weeks}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Days: {age.days}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Days: {age.days}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Hours: {age.hours}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Hours: {age.hours}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Minutes: {age.minutes}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Minutes: {age.minutes}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Seconds: {age.seconds}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Seconds: {age.seconds}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="card">
-                <div className="card-body">
-                  <p className="card-text">Milliseconds: {age.milliseconds}</p>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <p className="card-text">Milliseconds: {age.milliseconds}</p>
+                  </div>
                 </div>
               </div>
             </div>
