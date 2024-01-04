@@ -49,56 +49,56 @@ function AgeCalculator() {
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Years: {age.years}</p>
+                    <p className="card-text">In Years: {age.years}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Months: {age.months}</p>
+                    <p className="card-text">In Months: {age.months}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Weeks: {age.weeks}</p>
+                    <p className="card-text">In Weeks: {age.weeks}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Days: {age.days}</p>
+                    <p className="card-text">In Days: {age.days}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Hours: {age.hours}</p>
+                    <p className="card-text">In Hours: {age.hours}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Minutes: {age.minutes}</p>
+                    <p className="card-text">In Minutes: {age.minutes}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Seconds: {age.seconds}</p>
+                    <p className="card-text">In Seconds: {age.seconds}</p>
                   </div>
                 </div>
               </div>
               <div className="col">
                 <div className="card">
                   <div className="card-body">
-                    <p className="card-text">Milliseconds: {age.milliseconds}</p>
+                    <p className="card-text">In Milliseconds: {age.milliseconds}</p>
                   </div>
                 </div>
               </div>
