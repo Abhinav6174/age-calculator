@@ -1,35 +1,39 @@
-body{
-  background-color: #222222;
+@import url("https://fonts.googleapis.com/css2?family=Merienda&display=swap");
+
+body {
+    background-color: #222222;
+    font-family: "Merienda", cursive;
 }
 
 .container-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-.container{
-  background-color: #333333;
-  color: #ffffff;
-  font-family: Helvetica;
-  margin: 24px;
-  padding: 18px;
-  border-radius: 24px;
-  border: solid 8px #000000;
+.container {
+    background-color: #333333;
+    color: #ffffff;
+    font-family: Helvetica;
+    margin: 24px;
+    padding: 18px;
+    border-radius: 24px;
+    border: solid 8px #000000;
+    font-family: "Merienda", cursive;
 }
 
-.calendar{
-  font-size: 18px;
-  border: solid 2px #000000;
+.calendar {
+    font-size: 18px;
+    border: solid 2px #000000;
 }
 
-.card{
-  background-color: #555555;
-  color: #ffffff;
+.card {
+    background-color: #555555;
+    color: #ffffff;
 }
 
-p{
-  font-size: 16px;
-  font-weight: bold;
+p {
+    font-size: 16px;
+    font-weight: bold;
 }
