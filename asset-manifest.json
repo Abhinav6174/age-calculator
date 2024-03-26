@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/age-calculator/static/css/main.902dac28.css",
-    "main.js": "/age-calculator/static/js/main.6e4a34cd.js",
-    "static/js/787.716d4371.chunk.js": "/age-calculator/static/js/787.716d4371.chunk.js",
+    "main.css": "/age-calculator/static/css/main.9adf0522.css",
+    "main.js": "/age-calculator/static/js/main.c950fe31.js",
+    "static/js/453.4f5cc4cc.chunk.js": "/age-calculator/static/js/453.4f5cc4cc.chunk.js",
     "index.html": "/age-calculator/index.html",
-    "main.902dac28.css.map": "/age-calculator/static/css/main.902dac28.css.map",
-    "main.6e4a34cd.js.map": "/age-calculator/static/js/main.6e4a34cd.js.map",
-    "787.716d4371.chunk.js.map": "/age-calculator/static/js/787.716d4371.chunk.js.map"
+    "main.9adf0522.css.map": "/age-calculator/static/css/main.9adf0522.css.map",
+    "main.c950fe31.js.map": "/age-calculator/static/js/main.c950fe31.js.map",
+    "453.4f5cc4cc.chunk.js.map": "/age-calculator/static/js/453.4f5cc4cc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.902dac28.css",
-    "static/js/main.6e4a34cd.js"
+    "static/css/main.9adf0522.css",
+    "static/js/main.c950fe31.js"
   ]
 }
