@@ -178,9 +178,9 @@ Calculated with Modern Age Calculator ✨`;
                 <h1 className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
                   Age Calculator
                 </h1>
-                <Badge variant="accent" className="font-mono text-[11px] px-2 py-0.5">
+                {/* <Badge variant="accent" className="font-mono text-[11px] px-2 py-0.5">
                   v2.0
-                </Badge>
+                </Badge> */}
               </div>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 Precision life metrics, live countdowns & vital statistics
