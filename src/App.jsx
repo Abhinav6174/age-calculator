@@ -16,11 +16,7 @@ import {
   Wind,
   Gift,
   Star,
-  CalendarDays,
-  Shield,
-  Gem,
-  Flame,
-  SunMedium
+  CalendarDays
 } from 'lucide-react';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -143,16 +139,13 @@ export default function App() {
 
   const handleCopySummary = () => {
     if (!ageData || ageData.isFuture) return;
-    const { composite, totals, vedic } = ageData;
-    const text = `🕉️ Vedic Life & Age Summary:
+    const { composite, totals } = ageData;
+    const text = `🎂 My Age Summary:
 • Age: ${composite.years} Years, ${composite.months} Months, ${composite.days} Days
 • Exact: ${composite.hours} Hours, ${composite.minutes} Minutes, ${composite.seconds} Seconds
-• Vedic Rashi: ${vedic.rashi.hindi} (${vedic.rashi.rashi} - ${vedic.rashi.english})
-• Rashi Swami: ${vedic.rashi.swami}
-• Birth Vara: ${vedic.vara.hindi} (${vedic.vara.grahaLord})
-• Lucky Ratna: ${vedic.rashi.ratna}
 • Total Days Lived: ${formatNumber(totals.days)} Days
-Calculated with Vedic Age Calculator ✨`;
+• Total Heartbeats: ~${formatNumber(ageData.milestones.heartbeats)}
+Calculated with Modern Age Calculator ✨`;
 
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
@@ -170,27 +163,27 @@ Calculated with Vedic Age Calculator ✨`;
       {/* Background ambient lighting */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-primary/10 blur-[130px] rounded-full dark:bg-primary/15" />
-        <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] bg-amber-500/10 blur-[140px] rounded-full dark:bg-amber-500/10" />
+        <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] bg-indigo-500/10 blur-[140px] rounded-full dark:bg-indigo-500/10" />
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Navigation / Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 border-b border-border/50">
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-red-600 flex items-center justify-center shadow-lg shadow-orange-500/25 ring-1 ring-white/20">
-              <SunMedium className="h-6 w-6 text-white" />
+            <div className="h-11 w-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-1 ring-white/20">
+              <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-                  Vedic Age Calculator
+                  Age Calculator
                 </h1>
                 <Badge variant="accent" className="font-mono text-[11px] px-2 py-0.5">
                   v2.0
                 </Badge>
               </div>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Exact life metrics, countdowns & Vedic Astrology (वैदिक ज्योतिष)
+                Precision life metrics, live countdowns & vital statistics
               </p>
             </div>
           </div>
@@ -204,7 +197,7 @@ Calculated with Vedic Age Calculator ✨`;
                 className="gap-1.5 text-xs h-9"
               >
                 {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Share2 className="h-4 w-4" />}
-                {copied ? 'Copied!' : 'Share Summary'}
+                {copied ? 'Copied!' : 'Share Age'}
               </Button>
             )}
 
@@ -227,10 +220,10 @@ Calculated with Vedic Age Calculator ✨`;
               <div>
                 <CardTitle className="text-base sm:text-lg flex items-center gap-2">
                   <CalendarIcon className="h-4 w-4 text-primary" />
-                  Life Subscription Date (Janma Tithi)
+                  Life Subscription Activation Date
                 </CardTitle>
                 <CardDescription>
-                  Enter your date of birth to calculate live exact age and Vedic astrology insights
+                  Enter your exact date of birth to calculate live down-to-the-second age
                 </CardDescription>
               </div>
               <div className="flex items-center gap-2">
@@ -241,7 +234,7 @@ Calculated with Vedic Age Calculator ✨`;
                   className="text-xs h-8 text-muted-foreground hover:text-foreground"
                 >
                   <Clock className="h-3.5 w-3.5 mr-1" />
-                  {showTimeInput ? 'Hide Time' : 'Add Time of Birth (Janma Samay)'}
+                  {showTimeInput ? 'Hide Time' : 'Add Time of Birth'}
                 </Button>
                 <Button
                   variant="ghost"
@@ -287,6 +280,7 @@ Calculated with Vedic Age Calculator ✨`;
               )}
             </div>
 
+            {/* Custom target date selector if enabled */}
             {useCustomTarget && (
               <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50 animate-in fade-in-50">
                 <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
@@ -300,7 +294,7 @@ Calculated with Vedic Age Calculator ✨`;
                   className="font-medium h-10 max-w-sm"
                 />
                 <p className="text-xs text-muted-foreground mt-1.5">
-                  Allows calculating your age on any past milestone or future date.
+                  Allows calculating how old you were or will be on a specific historic or future date.
                 </p>
               </div>
             )}
@@ -323,7 +317,7 @@ Calculated with Vedic Age Calculator ✨`;
           </CardContent>
         </Card>
 
-        {/* Validation Error */}
+        {/* Validation Error: Future Date */}
         {ageData?.isFuture && (
           <Alert variant="warning" className="mt-6">
             <Hourglass className="h-4 w-4" />
@@ -337,19 +331,19 @@ Calculated with Vedic Age Calculator ✨`;
         {/* Main Display Area */}
         {ageData && !ageData.isFuture && (
           <div className="mt-8 space-y-6">
-            {/* Birthday Alert */}
+            {/* Birthday Alert Banner if Today is user's birthday! */}
             {ageData.nextBirthday.isToday && (
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-rose-500/15 border border-amber-500/30 flex items-center justify-between gap-4 shadow-sm animate-pulse-glow">
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-pink-500/15 via-purple-500/15 to-indigo-500/15 border border-pink-500/30 flex items-center justify-between gap-4 shadow-sm animate-pulse-glow">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 text-white flex items-center justify-center shadow-md">
+                  <div className="h-10 w-10 rounded-xl bg-pink-500 text-white flex items-center justify-center shadow-md">
                     <Cake className="h-5 w-5" />
                   </div>
                   <div>
                     <h4 className="font-bold text-sm sm:text-base text-foreground flex items-center gap-2">
-                      Janmadin Mubarak! Happy Birthday! 🎉🎂
+                      Happy Birthday! 🎉🎂
                     </h4>
                     <p className="text-xs text-muted-foreground">
-                      May this year bring health, prosperity, and spiritual blessings!
+                      Today you officially complete another fantastic revolution around the sun!
                     </p>
                   </div>
                 </div>
@@ -359,7 +353,7 @@ Calculated with Vedic Age Calculator ✨`;
                   onClick={triggerConfetti}
                   className="text-xs font-semibold gap-1.5"
                 >
-                  <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+                  <Sparkles className="h-3.5 w-3.5 text-pink-500" />
                   Celebrate!
                 </Button>
               </div>
@@ -376,7 +370,7 @@ Calculated with Vedic Age Calculator ✨`;
                       Live Age Counter
                     </Badge>
                     <span className="text-xs text-muted-foreground hidden sm:inline">
-                      Born on {ageData.vedic.vara.hindi} ({ageData.vedic.vara.grahaLord})
+                      Born on a {ageData.dayBornName}
                     </span>
                   </div>
                   <Badge variant="outline" className="font-mono text-xs">
@@ -433,13 +427,9 @@ Calculated with Vedic Age Calculator ✨`;
               </CardContent>
             </Card>
 
-            {/* TABBED DEEP DIVE SECTION */}
-            <Tabs defaultValue="vedic" className="w-full">
-              <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full h-auto p-1.5 gap-1">
-                <TabsTrigger value="vedic" className="gap-1.5 py-2">
-                  <SunMedium className="h-4 w-4 text-amber-500" />
-                  Vedic Astrology
-                </TabsTrigger>
+            {/* TABBED DEEP DIVE SECTION (Totals, Next Birthday, Milestones) */}
+            <Tabs defaultValue="totals" className="w-full">
+              <TabsList className="grid grid-cols-1 sm:grid-cols-3 w-full h-auto p-1.5 gap-1">
                 <TabsTrigger value="totals" className="gap-1.5 py-2">
                   <Activity className="h-4 w-4" />
                   Lifetime Totals
@@ -454,160 +444,7 @@ Calculated with Vedic Age Calculator ✨`;
                 </TabsTrigger>
               </TabsList>
 
-              {/* TAB 1: Vedic Astrology (वैदिक ज्योतिष) */}
-              <TabsContent value="vedic" className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-                  {/* Primary Rashi Card */}
-                  <Card className="md:col-span-7 border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-card to-orange-500/5">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Badge variant="accent" className="bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30 mb-1">
-                            वैदिक सूर्य राशि (Nirayana Surya Rashi)
-                          </Badge>
-                          <CardTitle className="text-xl sm:text-2xl font-bold flex items-center gap-2 mt-1">
-                            <span>{ageData.vedic.rashi.hindi}</span>
-                            <span className="text-muted-foreground font-normal text-base">
-                              ({ageData.vedic.rashi.rashi} / {ageData.vedic.rashi.english})
-                            </span>
-                          </CardTitle>
-                        </div>
-                        <div className="h-14 w-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-3xl">
-                          {ageData.vedic.rashi.symbol}
-                        </div>
-                      </div>
-                      <CardDescription>
-                        Solar transit period: {ageData.vedic.rashi.dates} &bull; Symbol: {ageData.vedic.rashi.animal}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                          <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                            Rashi Swami (Ruling Planet)
-                          </span>
-                          <span className="text-sm font-bold text-foreground">
-                            {ageData.vedic.rashi.swami}
-                          </span>
-                        </div>
-
-                        <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                          <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                            Tattva (Element) & Guna
-                          </span>
-                          <span className="text-sm font-bold text-foreground">
-                            {ageData.vedic.rashi.tattva} &bull; {ageData.vedic.rashi.guna}
-                          </span>
-                        </div>
-
-                        <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                          <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                            Lucky Ratna (Auspicious Gemstone)
-                          </span>
-                          <span className="text-sm font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-                            <Gem className="h-3.5 w-3.5" />
-                            {ageData.vedic.rashi.ratna}
-                          </span>
-                        </div>
-
-                        <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                          <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                            Ishta Devata / Deity
-                          </span>
-                          <span className="text-sm font-bold text-foreground flex items-center gap-1.5">
-                            <Shield className="h-3.5 w-3.5 text-primary" />
-                            {ageData.vedic.rashi.ishtaDevata}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Associated Nakshatras */}
-                      <div className="p-3.5 rounded-xl bg-muted/30 border border-border/50">
-                        <span className="text-xs font-semibold text-muted-foreground block mb-1">
-                          Associated Nakshatras (नक्षत्र चरण):
-                        </span>
-                        <p className="text-xs font-medium text-foreground">
-                          {ageData.vedic.rashi.nakshatras}
-                        </p>
-                      </div>
-
-                      {/* Lucky Attributes */}
-                      <div className="flex items-center gap-2 flex-wrap text-xs pt-1">
-                        <Badge variant="outline" className="gap-1">
-                          Lucky Numbers: <span className="font-bold text-foreground">{ageData.vedic.rashi.luckyNumbers}</span>
-                        </Badge>
-                        <Badge variant="outline" className="gap-1">
-                          Auspicious Color: <span className="font-bold text-foreground">{ageData.vedic.rashi.luckyColor}</span>
-                        </Badge>
-                        <Badge variant="outline" className="gap-1">
-                          Auspicious Day: <span className="font-bold text-foreground">{ageData.vedic.rashi.luckyDay}</span>
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Janma Vara Card */}
-                  <Card className="md:col-span-5 border-border/60 flex flex-col justify-between">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Badge variant="secondary" className="mb-1">
-                            जन्म वार (Birth Day of Week)
-                          </Badge>
-                          <CardTitle className="text-lg font-bold">
-                            {ageData.vedic.vara.hindi} ({ageData.vedic.vara.english})
-                          </CardTitle>
-                        </div>
-                        <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold">
-                          ॐ
-                        </div>
-                      </div>
-                      <CardDescription>
-                        Planetary Lord & attributes for your day of birth
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                        <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                          Day Lord (Graha Devata)
-                        </span>
-                        <span className="text-sm font-bold text-foreground">
-                          {ageData.vedic.vara.grahaLord}
-                        </span>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                        <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                          Presiding Divinity
-                        </span>
-                        <span className="text-sm font-semibold text-foreground">
-                          {ageData.vedic.vara.deity}
-                        </span>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                        <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
-                          Vara Prakriti (Nature)
-                        </span>
-                        <span className="text-sm font-semibold text-foreground">
-                          {ageData.vedic.vara.nature}
-                        </span>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center">
-                        <span className="text-[10px] uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400 block">
-                          Graha Bija / Smaran Mantra
-                        </span>
-                        <span className="font-mono text-xs font-semibold text-foreground">
-                          {ageData.vedic.vara.mantra}
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              {/* TAB 2: Total Lifetime Units */}
+              {/* TAB 1: Total Lifetime Units */}
               <TabsContent value="totals" className="space-y-4">
                 <Card>
                   <CardHeader>
@@ -616,7 +453,7 @@ Calculated with Vedic Age Calculator ✨`;
                       Total Lifetime Units
                     </CardTitle>
                     <CardDescription>
-                      Your existence broken down into individual continuous units of time
+                      Your entire existence broken down into individual continuous units of time
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -647,7 +484,7 @@ Calculated with Vedic Age Calculator ✨`;
                 </Card>
               </TabsContent>
 
-              {/* TAB 3: Next Birthday */}
+              {/* TAB 2: Next Birthday */}
               <TabsContent value="nextBirthday" className="space-y-4">
                 <Card>
                   <CardHeader>
@@ -660,6 +497,7 @@ Calculated with Vedic Age Calculator ✨`;
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
+                    {/* Countdown Digits */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                       <div className="p-4 rounded-xl bg-pink-500/10 border border-pink-500/20">
                         <div className="font-mono-numbers text-3xl font-extrabold text-pink-600 dark:text-pink-400">
@@ -695,6 +533,7 @@ Calculated with Vedic Age Calculator ✨`;
                       </div>
                     </div>
 
+                    {/* Progress of current age year */}
                     <div className="space-y-2 p-4 rounded-xl bg-muted/30 border border-border/50">
                       <div className="flex justify-between items-center text-xs">
                         <span className="font-medium text-foreground">
@@ -714,7 +553,7 @@ Calculated with Vedic Age Calculator ✨`;
                 </Card>
               </TabsContent>
 
-              {/* TAB 4: Milestones & Life Insights */}
+              {/* TAB 3: Milestones & Life Insights */}
               <TabsContent value="milestones" className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <Card className="border-rose-500/20 bg-rose-500/5">
@@ -829,10 +668,10 @@ Calculated with Vedic Age Calculator ✨`;
         {/* Footer */}
         <footer className="mt-16 text-center text-xs text-muted-foreground pt-8 border-t border-border/40 space-y-1">
           <p>
-            Vedic Age Calculator &copy; {new Date().getFullYear()} &bull; Built with React, Vite & Shadcn UI
+            Precision Age Calculator &copy; {new Date().getFullYear()} &bull; Built with React, Vite & Shadcn UI
           </p>
           <p className="text-[11px] text-muted-foreground/70">
-            Accounts for leap years, variable calendar month lengths, and authentic Vedic Jyotish (निरयण राशि व वार).
+            Accounts for leap years, variable calendar month lengths, and exact astronomical cycles.
           </p>
         </footer>
       </div>
