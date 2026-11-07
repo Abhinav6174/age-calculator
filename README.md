@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# 🕉️ Vedic Age Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, precision age calculator and life metrics explorer built with **React**, **Vite**, **Tailwind CSS**, and **shadcn/ui**, powered by authentic **Indian Vedic Astrology (वैदिक ज्योतिष)**.
 
-## Available Scripts
+Live Demo: [https://abhinav6174.github.io/age-calculator](https://abhinav6174.github.io/age-calculator)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **⚡ Modern Tech Stack**: Migrated to Vite 6 + React 18 for instant builds and blazing fast HMR.
+- **🎨 Shadcn UI Design System**: Built with modern accessible UI components (Card, Tabs, Badge, Button, Input, Progress, Alert) with dark and light theme support.
+- **⏱️ Real-time Live Ticking Age**: Live down-to-the-second age counter displaying exact Years, Months, Days, Hours, Minutes, and Seconds.
+- **🧮 100% Mathematically Exact**:
+  - Eliminates calculation bugs (no naive month divisions or 30-day assumptions).
+  - Handles all leap years (including leap babies born on Feb 29) and varying month lengths.
+  - Distinguishes exact composite age (*X Years, Y Months, Z Days*) from continuous totals (*Total Days, Total Hours, etc.*).
+- **🕉️ Indian Vedic Astrology (वैदिक ज्योतिष)**:
+  - **Nirayana Surya Rashi (निरयण सूर्य राशि)**: Accurate sidereal solar rashi with Sanskrit names (मेष, वृषभ, मिथुन, कर्क, सिंह, कन्या, तुला, वृश्चिक, धनु, मकर, कुंभ, मीन).
+  - **Rashi Swami (Ruling Graha)**: Mangal, Shukra, Budha, Surya, Chandra, Guru, Shani.
+  - **Tattva & Guna**: Agni (Fire), Prithvi (Earth), Vayu (Air), Jala (Water) and Sattva/Rajas/Tamas.
+  - **Associated Nakshatras (नक्षत्र चरण)**: The specific lunar mansions associated with your birth sign.
+  - **Auspicious Ratna (लकी रत्न)**: Red Coral (Moonga), Emerald (Panna), Ruby (Manikya), Pearl (Moti), Yellow Sapphire (Pukhraj), Blue Sapphire (Neelam), Diamond (Heera).
+  - **Ishta Devata**: Presiding divine energies (Lord Shiva, Hanuman, Vishnu, Lakshmi, Ganesha, Durga).
+  - **Vedic Janma Vara (जन्म वार)**: Detailed day-of-week attributes, Day Lord, and Graha Bija/Smaran Mantra.
+- **🎂 Upcoming Birthday Countdown**:
+  - Live countdown in Days, Hours, Minutes, and Seconds.
+  - Day of the week of your next birthday.
+  - Interactive year progress bar showing percentage of your current age year completed.
+- **📊 Total Lifetime Units**:
+  - Total Months, Total Weeks, Total Days, Total Hours, Total Minutes, Total Seconds, and Milliseconds.
+- **❤️ Life Milestones & Vital Statistics**:
+  - Estimated lifetime heartbeats (~80 bpm).
+  - Estimated lifetime breaths (~16/min).
+  - Total hours spent sleeping.
+  - 10,000 Days and 20,000 Days alive landmark dates.
+  - Golden Birthday (age matching day of birth).
+  - Half-Birthday milestone date.
+- **⚙️ Advanced Controls**:
+  - Optional exact time of birth (Janma Samay) input.
+  - Custom target date mode (calculate age on any historic or future date).
+  - Quick age presets (18, 21, 25, 30, 40, 50 years).
+  - One-click copy/share summary to clipboard.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js (v18+)
+- npm or yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Clone the repository
+git clone https://github.com/Abhinav6174/age-calculator.git
+cd age-calculator
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install dependencies
+npm install
 
-### `npm run eject`
+# Start development server
+npm run dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Production Build
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Deploy to GitHub Pages
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run deploy
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠️ Tech Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Framework**: React 18
+- **Bundler**: Vite 6
+- **Styling**: Tailwind CSS
+- **Components**: Shadcn UI architecture (Radix-inspired accessible primitives, Lucide icons)
+- **Effects**: canvas-confetti
+- **Typography**: Plus Jakarta Sans & JetBrains Mono
