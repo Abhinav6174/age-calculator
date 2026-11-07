@@ -26,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Logo } from '@/components/Logo';
 import { calculateDetailedAge } from '@/utils/ageCalculator';
 
 function formatNumber(num) {
@@ -170,9 +171,7 @@ Calculated with Modern Age Calculator ✨`;
         {/* Navigation / Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 border-b border-border/50">
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-1 ring-white/20">
-              <Sparkles className="h-6 w-6 text-white" />
-            </div>
+            <Logo className="h-11 w-11" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
